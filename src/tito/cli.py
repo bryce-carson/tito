@@ -691,6 +691,9 @@ class TagModule(BaseCliModule):
         if self.options.keep_version and self.options.use_version:
             error_out("Cannot combine --keep-version and --use-version")
 
+        if '@' in self.args.use_version or '@' in self.args.use_release:
+            error_out("Cannot use symbol '@' in release or tag. Use '~'.")
+
 
 class InitModule(BaseCliModule):
     """ CLI Module for initializing a project for use with tito. """
